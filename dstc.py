@@ -87,6 +87,15 @@ def process_events(timeout):
     dstc_swig.dstc_process_events(timeout)
     return True
 
+def process_pending_events():
+    global active
+    if not active:
+        print("Please call activate() before processing events")
+        return False
+
+    dstc_swig.dstc_process_pending_events()
+    return True  
+
 def remote_function_available(lambda_func):
     global active
     if not active:

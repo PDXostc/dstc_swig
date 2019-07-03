@@ -18,7 +18,10 @@ client_lambda = {}
 import sys
 import dstc_swig
 import struct
+import time
 
+def current_milli_time():
+    return int(round(time.time() * 1000))
 
 def decode_string(fixed_width_string):
     return fixed_width_string[:fixed_width_string.index(b'\x00')].decode("utf8")
@@ -86,6 +89,15 @@ def process_events(timeout):
 
     dstc_swig.dstc_process_events(timeout)
     return True
+
+def process_pending_events():
+    global active
+    if not active:
+        print("Please call activate() before processing events")
+        return False
+
+    dstc_swig.dstc_process_pending_events()
+    return True  
 
 def remote_function_available(lambda_func):
     global active

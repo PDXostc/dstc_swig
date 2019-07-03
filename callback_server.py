@@ -1,8 +1,9 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 #
 # Simple callback example - Server
 #
 import dstc
+from dstc import current_milli_time
 
 def double_value_and_invoke_callback(func_name, value, callback):
     print("Will double value: {}".format(value))
@@ -21,4 +22,9 @@ if __name__ == "__main__":
                                   double_value_and_invoke_callback,
                                   "i&")
     dstc.activate()
-    dstc.process_events(-1)
+    
+    stop_ts = current_milli_time() + 400
+    while (current_milli_time() < stop_ts):
+            dstc.process_events(stop_ts - current_milli_time())
+
+    dstc.process_pending_events()

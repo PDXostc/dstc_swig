@@ -6,9 +6,9 @@
 CFLAGS += -ggdb
 INC_DIRS ?= -I/usr/local/
 
-OBJ = ./src/dstc_swig_wrap.o
-SRC = ./src/dstc_swig_wrap.c
-SWIG = ./src/dstc_swig.i
+OBJ = dstc_swig_wrap.o
+SRC = dstc_swig_wrap.c
+SWIG = dstc_swig.i
 
 $(OBJ): $(SRC)
 	python3 setup.py build_ext --inplace $(INC_DIRS)

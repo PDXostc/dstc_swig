@@ -20,6 +20,6 @@ setup (name = 'jlr-dstc',
        description  = """SWIG wrapper for DSTC.""",
        py_modules   = [ 'dstc', 'dstc_swig' ],
        ext_modules  = [
-           Extension('_dstc_swig', sources=['dstc_swig_wrap.c',],libraries=['dstc', 'rmc'])
+           Extension('_dstc_swig', sources=['./src/dstc_swig_wrap.c',],libraries=['dstc', 'rmc'])
        ],
        )

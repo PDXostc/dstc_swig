@@ -1,14 +1,20 @@
 #
 # Makefile to generate python interface code for DSTC
 #
+.PHONY: all clean 
 
 CFLAGS += -ggdb
-DSTC_DIR ?= /usr/local/
-dstc_swig_wrap.o: dstc_swig_wrap.c
-	python3 setup.py build_ext --inplace  -I${DSTC_DIR}/include
+INC_DIRS ?= -I/usr/local/
 
-dstc_swig_wrap.c: dstc_swig.i
-	swig -I${DSTC_DIR}/include -python -includeall dstc_swig.i
+OBJ = ./src/dstc_swig_wrap.o
+SRC = ./src/dstc_swig_wrap.c
+SWIG = ./src/dstc_swig.i
+
+$(OBJ): $(SRC)
+	python3 setup.py build_ext --inplace $(INC_DIRS)
+
+$(SRC): $(SWIG)
+	swig $(INC_DIRS) -python -includeall $(SWIG)
 
 clean:
 	rm -rf _dstc*.so build dstc_swig.py dstc_swig_wrap.* __pycache__ \

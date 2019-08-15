@@ -53,3 +53,5 @@ dkms.conf
 
 # Python 
 __pycache__/
+*_swig.py
+*.c

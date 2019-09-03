@@ -4,8 +4,12 @@
 #
 import dstc
 
+do_exit = False
+
 def double_value_callback(doubled_value):
+    global do_exit
     print("Callback-delivered value: {}".format(doubled_value))
+    do_exit = True
 
 if __name__ == "__main__":
     # Setup a client call to the server that will double the value for us.
@@ -29,4 +33,6 @@ if __name__ == "__main__":
     # function is to invoke in order to deliver the result.
     #
     client_func(21, (double_value_callback, "i"))
-    dstc.process_events(100000)
+
+    while not do_exit:
+        dstc.process_events(-1)

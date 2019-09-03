@@ -21,8 +21,8 @@
 
     extern uint8_t dstc_remote_function_available(void* func_ptr);
 
-    extern void swig_dstc_process(uint64_t callback_ref, // Not used.
-                                  unsigned int node_id,
+    extern void swig_dstc_process(dstc_callback_t callback_ref, // Not used.
+                                  rmc_node_id_t node_id,
                                   unsigned char* func_name,
                                   unsigned char* payload,
                                   unsigned short payload_len);
@@ -44,9 +44,10 @@
 
 static PyObject *cb_ptr = NULL;
 
-void swig_dstc_process(unsigned long callback_ref, // Not used.
-                       unsigned int node_id,
-                       unsigned char *func_name,
+
+void swig_dstc_process(dstc_callback_t callback_ref, // Not used.
+                       rmc_node_id_t node_id,
+                       unsigned char* func_name,
                        unsigned char* payload,
                        unsigned short payload_len)
 {
@@ -117,7 +118,6 @@ int swig_dstc_queue_callback(unsigned long addr,
 extern int dstc_setup(void);
 typedef long int usec_timestamp_t;
 extern int dstc_process_events(int timeout);
-extern int dstc_process_pending_events(void);
 extern int dstc_queue_func(struct dstc_context*, char* name, unsigned char* arg_buf, unsigned int arg_sz);
 extern unsigned char dstc_remote_function_available_by_name(char* func_name);
 extern int dstc_queue_callback(struct dstc_context*,

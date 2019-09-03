@@ -96,8 +96,8 @@ def process_pending_events():
         print("Please call activate() before processing events")
         return False
 
-    dstc_swig.dstc_process_pending_events()
-    return True  
+    dstc_swig.dstc_process_events(0)
+    return True
 
 def remote_function_available(lambda_func):
     global active

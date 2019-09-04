@@ -12,4 +12,4 @@ if __name__ == "__main__":
         dstc.process_events(100000)
 
     client_func("32 byte string", b"Dynamic string", [11,22,33])
-    dstc.process_events(10000)
+    dstc.process_events(500)

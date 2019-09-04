@@ -12,4 +12,5 @@ if __name__ == "__main__":
         dstc.process_events(100000)
 
     client_func(b"Hello world\x00", [1,2,3,4])
-    dstc.process_events(10000)
+
+    dstc.process_events(500)

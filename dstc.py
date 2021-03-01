@@ -81,6 +81,20 @@ def activate():
     active = True
     return True
 
+
+def deactivate():
+    """Change active to False.
+
+    This allows a user to deactivate DSTC and register/deregister client/server
+    functions.
+
+    .. warning::No expections, no promises that changes will be effected.
+    """
+    global active
+    active = False 
+    return True
+
+
 def process_events(timeout):
     global active
     if not active:
